@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d18">
+  <meta name="description" content="Andrew's personal portfolio — coding, creative projects, technology, and chess.">
+  <title>Andrew — Personal Portfolio</title>
+  <style>
+    :root {
+      --bg: #080d18;
+      --panel: #101a2b;
+      --panel2: #142238;
+      --text: #edf4ff;
+      --muted: #9aacc5;
+      --blue: #62a8ff;
+      --cyan: #55e1e6;
+      --line: rgba(160,190,230,.14);
+      --glow: 0 0 45px rgba(65,145,255,.13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--text); background:
+        radial-gradient(ellipse at 80% 0%, rgba(35,105,190,.20), transparent 34rem),
+        radial-gradient(ellipse at 0% 45%, rgba(31,82,142,.12), transparent 30rem), var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1080px, calc(100% - 40px)); margin: auto; }
+    header {
+      position: sticky; top: 0; z-index: 10; backdrop-filter: blur(18px);
+      background: rgba(8,13,24,.78); border-bottom: 1px solid var(--line);
+    }
+    nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { font-weight: 850; letter-spacing: -.04em; font-size: 1.25rem; }
+    .brand span { color: var(--cyan); }
+    .navlinks { display: flex; gap: 24px; color: var(--muted); font-size: .92rem; }
+    .navlinks a:hover { color: var(--cyan); }
+    .hero { min-height: 610px; display: grid; align-items: center; padding: 90px 0 80px; }
+    .eyebrow { color: var(--cyan); font-size: .82rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 750; }
+    h1 { font-size: clamp(3.3rem, 9vw, 6.5rem); line-height: .98; letter-spacing: -.075em; margin: 18px 0; }
+    h1 .accent { background: linear-gradient(100deg, var(--blue), var(--cyan)); color: transparent; background-clip: text; }
+    .hero p { max-width: 650px; color: var(--muted); font-size: 1.12rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .btn { display: inline-flex; padding: 12px 19px; border-radius: 12px; font-weight: 750; border: 1px solid var(--line); transition: .2s; }
+    .btn.primary { color: #06111e; background: linear-gradient(110deg, var(--blue), var(--cyan)); border: 0; }
+    .btn:hover { transform: translateY(-3px); box-shadow: var(--glow); }
+    .hero-card { margin-top: 45px; max-width: 720px; padding: 18px 20px; border: 1px solid var(--line); border-radius: 18px; background: rgba(16,26,43,.72); box-shadow: var(--glow); }
+    .hero-card strong { color: var(--cyan); }
+    section { padding: 75px 0; scroll-margin-top: 70px; }
+    .section-head { margin-bottom: 28px; }
+    h2 { font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -.055em; line-height: 1.1; margin: 8px 0; }
+    .section-head p, .muted { color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card { padding: 23px; border-radius: 18px; border: 1px solid var(--line); background: linear-gradient(145deg, rgba(20,34,56,.9), rgba(13,22,37,.92)); transition: .2s; }
+    .card:hover { transform: translateY(-4px); border-color: rgba(85,225,230,.38); }
+    .icon { font-size: 1.65rem; margin-bottom: 12px; }
+    h3 { margin: 0 0 8px; font-size: 1.15rem; }
+    .card p { color: var(--muted); margin: 0; font-size: .95rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
+    .tag { font-size: .82rem; color: #c8dcf8; background: rgba(98,168,255,.10); border: 1px solid rgba(98,168,255,.18); padding: 6px 11px; border-radius: 999px; }
+    .project { display: flex; flex-direction: column; min-height: 220px; }
+    .project .tag { align-self: flex-start; margin-top: auto; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .quote { font-size: 1.3rem; line-height: 1.5; color: #dceaff; }
+    .quote span { color: var(--cyan); }
+    .contact { text-align: center; padding: 45px 25px; border: 1px solid var(--line); border-radius: 24px; background: radial-gradient(ellipse at top, rgba(55,130,220,.18), transparent 70%), var(--panel); }
+    footer { padding: 28px 0; color: var(--muted); border-top: 1px solid var(--line); font-size: .88rem; }
+    footer .container { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    @media (max-width: 760px) {
+      .navlinks { gap: 12px; font-size: .82rem; }
+      .grid { grid-template-columns: 1fr 1fr; }
+      .split { grid-template-columns: 1fr; }
+      .hero { min-height: 540px; }
+    }
+    @media (max-width: 520px) {
+      .container { width: min(100% - 28px, 1080px); }
+      nav { align-items: flex-start; flex-direction: column; padding: 14px 0; }
+      .navlinks { width: 100%; overflow-x: auto; padding-bottom: 3px; }
+      .grid { grid-template-columns: 1fr; }
+      .hero { padding: 65px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a class="brand" href="#home">ANDREW<span>.</span></a>
+      <div class="navlinks">
+        <a href="#about">About</a><a href="#interests">Interests</a><a href="#projects">Projects</a><a href="#skills">Skills</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container" id="home">
+      <div>
+        <div class="eyebrow">Student • Creator • Curious mind</div>
+        <h1>Hi, I'm<br><span class="accent">Andrew.</span></h1>
+        <p>I enjoy building things, exploring technology, solving problems, and turning random ideas into real projects. This is my little corner of the internet.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">Explore my work ↗</a>
+          <a class="btn" href="#about">Get to know me</a>
+        </div>
+        <div class="hero-card"><strong>Currently into:</strong> web development, Roblox creation, chess, computers, and learning new things.</div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head"><div class="eyebrow">01 / About</div><h2>A little about me</h2><p>More than just a screen and a keyboard.</p></div>
+        <div class="split">
+          <div class="card">
+            <div class="icon">🧠</div><h3>Always learning</h3>
+            <p>I like understanding how things work — from English grammar and science to coding, computers, and problem-solving. I learn best by trying things myself.</p>
+          </div>
+          <div class="card">
+            <div class="icon">⚡</div><h3>Ideas into projects</h3>
+            <p>I enjoy experimenting, building small projects, improving designs, and fixing bugs. Sometimes the best way to learn is to make something.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="interests">
+      <div class="container">
+        <div class="section-head"><div class="eyebrow">02 / Interests</div><h2>Things I enjoy</h2><p>A mix of creativity, technology, and strategy.</p></div>
+        <div class="grid">
+          <article class="card"><div class="icon">💻</div><h3>Web development</h3><p>Making websites with HTML, CSS, and JavaScript, experimenting with layouts, and bringing ideas online.</p></article>
+          <article class="card"><div class="icon">🎮</div><h3>Roblox creation</h3><p>Exploring game ideas, scripting features, designing interfaces, and learning how game systems fit together.</p></article>
+          <article class="card"><div class="icon">♟️</div><h3>Chess</h3><p>I enjoy strategic games, studying positions, and looking for clever moves. Chess keeps me thinking ahead.</p></article>
+          <article class="card"><div class="icon">🖥️</div><h3>PC technology</h3><p>Interested in computer hardware, performance, Windows, networking, and getting the most out of a setup.</p></article>
+          <article class="card"><div class="icon">🎨</div><h3>Design</h3><p>I like dark themes, blue accents, clean interfaces, and creative anime-inspired visuals.</p></article>
+          <article class="card"><div class="icon">📚</div><h3>Learning</h3><p>Practising English, mathematics, science, and other school subjects — especially when I can turn learning into a quiz.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head"><div class="eyebrow">03 / Projects</div><h2>Things I've worked on</h2><p>A selection of ideas and experiments from my creative side.</p></div>
+        <div class="grid">
+          <article class="card project"><div class="icon">🧩</div><h3>MasterQuiz</h3><p>A small quiz project made to help friends learn and practise. It is published and still being developed.</p><span class="tag">Learning website</span></article>
+          <article class="card project"><div class="icon">🌐</div><h3>Personal & web projects</h3><p>Experimenting with multi-page websites, home pages, navigation, dark and light themes, and useful web features.</p><span class="tag">HTML • CSS • JS</span></article>
+          <article class="card project"><div class="icon">🎮</div><h3>Roblox game ideas</h3><p>Working on game concepts, gameplay systems, interfaces, leaderboards, and scripts to make experiences more fun.</p><span class="tag">Game development</span></article>
+          <article class="card project"><div class="icon">🤖</div><h3>Discord bot experiments</h3><p>Exploring bot commands, chat features, and connecting code with APIs to make helpful tools.</p><span class="tag">Python • JavaScript</span></article>
+          <article class="card project"><div class="icon">♟️</div><h3>Chess & strategy</h3><p>Playing, reviewing games, and learning to spot better plans and tactical opportunities.</p><span class="tag">Strategy</span></article>
+          <article class="card project"><div class="icon">🛠️</div><h3>Tech experiments</h3><p>Testing PC settings, learning about hardware, and finding practical ways to improve everyday computer use.</p><span class="tag">Technology</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head"><div class="eyebrow">04 / Toolkit</div><h2>What I'm exploring</h2><p>Skills and tools I have used or am learning. Always a work in progress.</p></div>
+        <div class="card">
+          <div class="tags">
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+            <span class="tag">Python</span><span class="tag">Lua / Roblox Studio</span><span class="tag">Scratch</span>
+            <span class="tag">VS Code</span><span class="tag">GitHub</span><span class="tag">Discord bots</span>
+            <span class="tag">PC hardware</span><span class="tag">Chess</span><span class="tag">Problem solving</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact">
+          <div class="eyebrow">05 / The next idea</div>
+          <h2>Let's build something cool.</h2>
+          <p class="muted">I'm always exploring new ideas and learning something new.</p>
+          <a class="btn primary" href="#home">Back to top ↑</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container"><span>© <span id="year"></span> Andrew. Made with curiosity.</span><span>Keep learning. Keep creating.</span></div></footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
